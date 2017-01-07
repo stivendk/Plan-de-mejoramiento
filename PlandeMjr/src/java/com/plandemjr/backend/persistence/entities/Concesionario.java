@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Concesionario.findByNombre", query = "SELECT c FROM Concesionario c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "Concesionario.findByTelefono", query = "SELECT c FROM Concesionario c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Concesionario.findByDireccion", query = "SELECT c FROM Concesionario c WHERE c.direccion = :direccion")})
-public class Concesionario implements Serializable {
+public class Concesionario implements Serializable, IEntitie {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -141,6 +141,11 @@ public class Concesionario implements Serializable {
     @Override
     public String toString() {
         return "com.plandemjr.backend.persistence.entities.Concesionario[ nit=" + nit + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return nit.toString();
     }
     
 }

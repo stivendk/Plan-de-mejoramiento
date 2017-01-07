@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Vehiculo.findByMarca", query = "SELECT v FROM Vehiculo v WHERE v.marca = :marca"),
     @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo"),
     @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")})
-public class Vehiculo implements Serializable {
+public class Vehiculo implements Serializable, IEntitie {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -153,6 +153,11 @@ public class Vehiculo implements Serializable {
     @Override
     public String toString() {
         return "com.plandemjr.backend.persistence.entities.Vehiculo[ idVehiculo=" + idVehiculo + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idVehiculo.toString();
     }
     
 }

@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, IEntitie {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -140,6 +140,11 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "com.plandemjr.backend.persistence.entities.Cliente[ idCliente=" + idCliente + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idCliente.toString();
     }
     
 }
