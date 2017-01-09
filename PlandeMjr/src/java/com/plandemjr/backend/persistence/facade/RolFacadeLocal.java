@@ -5,7 +5,7 @@
  */
 package com.plandemjr.backend.persistence.facade;
 
-import com.plandemjr.backend.persistence.entities.Cliente;
+import com.plandemjr.backend.persistence.entities.Rol;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,22 +14,20 @@ import javax.ejb.Local;
  * @author StivenDavid
  */
 @Local
-public interface ClienteFacadeLocal {
+public interface RolFacadeLocal {
 
-    void create(Cliente cliente);
+    void create(Rol rol);
 
-    void edit(Cliente cliente);
+    void edit(Rol rol);
 
-    void remove(Cliente cliente);
+    void remove(Rol rol);
 
-    Cliente find(Object id);
+    Rol find(Object id);
 
-    List<Cliente> findAll();
+    List<Rol> findAll();
 
-    List<Cliente> findRange(int[] range);
+    List<Rol> findRange(int[] range);
 
     int count();
-    
-    Cliente iniciarSesion(Cliente cl) throws Exception;
     
 }

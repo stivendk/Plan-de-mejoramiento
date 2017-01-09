@@ -26,7 +26,7 @@ public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
     private Cliente cliente;
     @EJB
     private ClienteFacadeLocal clientefc;
-    
+
     public ClienteManagedBean() {
     }
 
@@ -37,28 +37,31 @@ public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         cliente = new Cliente();
     }
-    
-    public void registrarCliente(){
+
+    public String registrarCliente() {
         clientefc.create(cliente);
+        return "/pages/inicio";
     }
-    public void modificarCliente(){
+
+    public void modificarCliente() {
         clientefc.edit(cliente);
     }
-    public String actualizarCliente(Cliente c){
-        cliente = c;
-        return "";
-    }
-    
-    public void eliminarCliente(Cliente cs){
+
+    public void eliminarCliente(Cliente c) {
         clientefc.remove(cliente);
     }
-    
-    public List<Cliente> listarCliente(){
+
+    public String actualizarCliente(Cliente cl) {
+        cliente = cl;
+        return "";
+    }
+
+    public List<Cliente> listarCliente() {
         return clientefc.findAll();
     }
 

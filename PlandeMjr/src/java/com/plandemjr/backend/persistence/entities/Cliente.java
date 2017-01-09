@@ -15,6 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
     @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
     @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Cliente.findByCorreo", query = "SELECT c FROM Cliente c WHERE c.correo = :correo"),
+    @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password"),
     @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
 public class Cliente implements Serializable, IEntitie {
@@ -47,18 +51,31 @@ public class Cliente implements Serializable, IEntitie {
     private Integer idCliente;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 30)
     @Column(name = "nombre")
     private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "correo")
+    private String correo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "password")
+    private String password;
     @Basic(optional = false)
     @NotNull
     @Column(name = "telefono")
     private int telefono;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 30)
     @Column(name = "direccion")
     private String direccion;
+    @JoinColumn(name = "rol", referencedColumnName = "id_rol")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Rol rol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente", fetch = FetchType.LAZY)
     private List<Venta> ventaList;
 
@@ -69,9 +86,11 @@ public class Cliente implements Serializable, IEntitie {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, String nombre, int telefono, String direccion) {
+    public Cliente(Integer idCliente, String nombre, String correo, String password, int telefono, String direccion) {
         this.idCliente = idCliente;
         this.nombre = nombre;
+        this.correo = correo;
+        this.password = password;
         this.telefono = telefono;
         this.direccion = direccion;
     }
@@ -92,6 +111,22 @@ public class Cliente implements Serializable, IEntitie {
         this.nombre = nombre;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getTelefono() {
         return telefono;
     }
@@ -106,6 +141,14 @@ public class Cliente implements Serializable, IEntitie {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     @XmlTransient
