@@ -45,7 +45,7 @@ public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
 
     public String registrarCliente() {
         clientefc.create(cliente);
-        return "/pages/inicio";
+        return "/pages/inicio?faces-redirect=true";
     }
 
     public void modificarCliente() {

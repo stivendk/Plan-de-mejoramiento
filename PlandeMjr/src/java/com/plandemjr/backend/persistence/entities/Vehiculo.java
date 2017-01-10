@@ -41,6 +41,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")})
 public class Vehiculo implements Serializable, IEntitie {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "lanzamiento")
+    private int lanzamiento;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -150,14 +155,22 @@ public class Vehiculo implements Serializable, IEntitie {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.plandemjr.backend.persistence.entities.Vehiculo[ idVehiculo=" + idVehiculo + " ]";
-    }
 
     @Override
     public String getId() {
         return idVehiculo.toString();
     }
+
+    public int getLanzamiento() {
+        return lanzamiento;
+    }
+
+    public void setLanzamiento(int lanzamiento) {
+        this.lanzamiento = lanzamiento;
+    }
     
+    @Override
+    public String toString() {
+        return "com.plandemjr.backend.persistence.entities.Vehiculo[ idVehiculo=" + idVehiculo + " ]";
+    }
 }

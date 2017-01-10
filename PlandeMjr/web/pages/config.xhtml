@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <title>Modificar</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../css/estilos.css"></link>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/carousel.js"></script>
+
+    <h:body>
+        <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+            <ul class="nav navbar-nav">
+                <li class="le"><a class="le" href="../disenios/cita.xhtml">Vehiculos</a></li>
+                <li class="le"><a class="le" href="../disenios/disenios.xhtml">Gestionar Concesionario</a></li>
+                <li class="le"><a class="le" href="../disenios/sucursales.xhtml">Reportes</a></li>
+                <li class="le"><a class="le" href="../disenios/sucursales.xhtml">#{clienteManagedBean.cliente.nombre}</a></li>
+
+            </ul>
+            <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="item"/>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="le"><a class="le" href="config.xhtml" onclick="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
+                <li class="le"><a class="le" href="../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+        <br></br>
+        <div>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="#{item.nombre}"/></h1>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Password:" for="password" />
+                        <p:inputText id="password" value="#{clienteManagedBean.cliente.password}" title="Password" required="true" requiredMessage="The Password field is required."/>
+                        <p:outputLabel value="Telefono:" for="telefono" />
+                        <p:inputText id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
+                        <p:outputLabel value="Direccion:" for="direccion" />
+                        <p:inputText id="direccion" value="#{clienteManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
+                    </p:panelGrid>
+                </h:form>
+            </f:view>
+
+        </div>
+    </h:body>
+</html>
+

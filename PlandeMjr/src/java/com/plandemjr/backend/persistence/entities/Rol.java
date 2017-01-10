@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r"),
     @NamedQuery(name = "Rol.findByIdRol", query = "SELECT r FROM Rol r WHERE r.idRol = :idRol"),
     @NamedQuery(name = "Rol.findByRol", query = "SELECT r FROM Rol r WHERE r.rol = :rol")})
-public class Rol implements Serializable, IEntitie {
+public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,8 +48,6 @@ public class Rol implements Serializable, IEntitie {
     @Size(min = 1, max = 30)
     @Column(name = "rol")
     private String rol;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol", fetch = FetchType.LAZY)
-    private List<Cliente> clienteList;
 
     public Rol() {
     }
@@ -79,14 +77,7 @@ public class Rol implements Serializable, IEntitie {
         this.rol = rol;
     }
 
-    @XmlTransient
-    public List<Cliente> getClienteList() {
-        return clienteList;
-    }
-
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -111,11 +102,6 @@ public class Rol implements Serializable, IEntitie {
     @Override
     public String toString() {
         return "com.plandemjr.backend.persistence.entities.Rol[ idRol=" + idRol + " ]";
-    }
-
-    @Override
-    public String getId() {
-        return idRol.toString();
     }
     
 }
