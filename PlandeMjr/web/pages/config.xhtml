@@ -25,7 +25,7 @@
             <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="item"/>
             <ul class="nav navbar-nav navbar-right">
                 <li class="le"><a class="le" href="config.xhtml" onclick="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
-                <li class="le"><a class="le" href="../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                <li class="le"><a class="le" href="../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
             </ul>
         </div>
         <br></br>

@@ -14,28 +14,98 @@
     <link rel="stylesheet" type="text/css" href="../css/estilos.css"></link>
     <script src="../js/jquery-2.2.3.min.js"></script>
     <script src="../js/carousel.js"></script>
+    <style>
+        .post
+        {
+            background-color: #FFF;
+            overflow: hidden;
+            box-shadow: 0 0 1px #CCC;
+        }
+        .post img
+        {
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+            -moz-filter: blur(2px);
+            -o-filter: blur(2px);
+            -ms-filter: blur(2px);
+        }
+        .post .content
+        {
+            padding: 15px;
+        }
+        .post .author
+        {
+            font-size: 11px;
+            color: #737373;
+            padding: 25px 30px 20px;
+        }
+        .post .post-img-content
+        {
+            height: 196px;
+            position: relative;
+        }
+        .post .post-img-content img
+        {
+            position: absolute;
+        }
+        .post .post-title
+        {
+            display: table-cell;
+            vertical-align: bottom;
+            z-index: 2;
+            position: relative;
+        }
+        .post .post-title b
+        {
+            background-color: rgba(51, 51, 51, 0.58);
+            display: inline-block;
+            margin-bottom: 5px;
+            color: #FFF;
+            padding: 10px 15px;
+            margin-top: 5px;
+        }
+    </style>
 
     <h:body>
-        <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
-            <ul class="nav navbar-nav">
-                <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
-                <li class="le"><a class="le" href="../disenios/gestion.xhtml">Gestionar Concesionario</a></li>
-                <li class="le"><a class="le" href="../disenios/Reportes.xhtml">Reportes</a></li>                
-            </ul>
-            <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="item"/>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="le"><a class="le" href="config.xhtml" onclick="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
-                <li class="le"><a class="le" href="../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
-            </ul>
-        </div>
-        <br></br>
-        <div class="container">
-            <div class="row">
-                <div id="myCarousel" class="carousel  slide">
-                    
+        <h:form>
+            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+                <ul class="nav navbar-nav">
+                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
+                    <li class="le"><a class="le" href="../disenios/gestion.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="../disenios/Reportes.xhtml">Reportes</a></li>                
+                    <li class="le"><a class="le" href="">#{loginManagedBean.cliente.nombre}</a></li>                
+                </ul>
+                <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="item"/>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="le"><a class="le" href="config.xhtml" action="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
+                    <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <br></br>
+            <div class="container">
+                <div class="row">
+                    <ui:repeat value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
+                        <div class="col-sm-4 col-md-4">
+                            <div class="post">
+                                <div class="post-img-content">
+                                    <img src="http://placehold.it/460x250/e67e22/ffffff&text;=HTML5" class="img-responsive" />
+                                    <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
+                                        <b>#{item.marca}</b></span>
+                                </div>
+                                <div class="content">
+                                    <div>
+                                        #{item.idConcecionario.nombre}
+                                    </div>
+                                    <div>
+                                        <a href="#" class="btn btn-warning btn-sm">Comprar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
                 </div>
             </div>
-        </div>
+        </h:form>
     </h:body>
 </html>
 

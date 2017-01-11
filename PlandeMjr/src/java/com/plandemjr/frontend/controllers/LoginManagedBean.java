@@ -43,7 +43,7 @@ public class LoginManagedBean implements Serializable {
         cliente = new Cliente();
     }
     
-    public String iniciarSesion(){
+    public String iniciarSesion(Cliente cl){
         String redir = null;
         try {
             if (clientefc.iniciarSesion(cliente)!=null) {

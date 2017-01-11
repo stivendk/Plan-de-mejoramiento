@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -43,9 +45,14 @@ public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
         cliente = new Cliente();
     }
 
-    public String registrarCliente() {
+    public void registrarCliente() {
+        try {
         clientefc.create(cliente);
-        return "/pages/inicio?faces-redirect=true";
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se registro con exito.", ""));
+        } catch (Exception e) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Hubo un error.", ""));
+
+        }
     }
 
     public void modificarCliente() {
@@ -58,7 +65,7 @@ public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
 
     public String actualizarCliente(Cliente cl) {
         cliente = cl;
-        return "";
+        return "/pages/config";
     }
 
     public List<Cliente> listarCliente() {

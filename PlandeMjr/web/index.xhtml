@@ -10,6 +10,7 @@
     </h:head>
     <h:body>
         <h:form>
+            <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="cliente"/>
             <p:messages autoUpdate="true"/>
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="correo" value="Correo:" />
@@ -18,8 +19,10 @@
                 <h:outputLabel for="password" value="Password:" />
                 <p:password id="password" value="#{loginManagedBean.cliente.password}" required="true" label="password" />
 
-                <p:commandButton value="Login" action="#{loginManagedBean.iniciarSesion()}"/>
+                <p:commandButton value="Login" action="#{loginManagedBean.iniciarSesion(item)}"/>
             </h:panelGrid>
+            <p:separator/>
+            <p:link value="Crear cuenta" outcome="registro"/>
         </h:form>
     </h:body>
 </html>
