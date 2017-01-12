@@ -7,13 +7,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-    <f:event type="preRenderView" listener="#{seguridadController.verificarSesion()}"/>
     <title>#{clienteManagedBean.cliente.nombre}</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"></link>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"></link>
-    <link rel="stylesheet" type="text/css" href="../css/estilos.css"></link>
-    <script src="../js/jquery-2.2.3.min.js"></script>
-    <script src="../js/carousel.js"></script>
+    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
+    <f:event type="preRenderView" listener="#{seguridadController.verificarSesion()}"/>
     <style>
         .post
         {
@@ -71,13 +69,12 @@
             <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
                 <ul class="nav navbar-nav">
                     <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
-                    <li class="le"><a class="le" href="../disenios/gestion.xhtml">Gestionar Concesionario</a></li>
-                    <li class="le"><a class="le" href="../disenios/Reportes.xhtml">Reportes</a></li>                
-                    <li class="le"><a class="le" href="">#{loginManagedBean.cliente.nombre}</a></li>                
+                    <li class="le"><a class="le" href="a.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
                 </ul>
-                <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="item"/>
+                <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="tem"/>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="le"><a class="le" href="config.xhtml" action="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
+                    <li class="le"><a class="le" href="a.xhtml" action="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
                     <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                 </ul>
             </div>
@@ -97,7 +94,7 @@
                                         #{item.idConcecionario.nombre}
                                     </div>
                                     <div>
-                                        <a href="#" class="btn btn-warning btn-sm">Comprar</a>
+                                        <p:commandButton value="Comprar" action="#{ventaManagedBean.comprarVehiculo(iteme, tem)}" class="btn btn-warning btn-sm"/>
                                     </div>
                                 </div>
                             </div>
@@ -106,6 +103,8 @@
                 </div>
             </div>
         </h:form>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/carousel.js"></script>
     </h:body>
 </html>
 

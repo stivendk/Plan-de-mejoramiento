@@ -56,7 +56,7 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
         return "";
     }
 
-    public void Vehiculo(Vehiculo vs) {
+    public void eliminarVehiculo(Vehiculo vs) {
         vehifc.remove(vehi);
     }
 
