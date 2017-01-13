@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password"),
     @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
-public class Cliente implements Serializable, IEntitie {
+public class Cliente implements Serializable,IEntitie {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,9 +73,6 @@ public class Cliente implements Serializable, IEntitie {
     @Size(min = 1, max = 30)
     @Column(name = "direccion")
     private String direccion;
-    @JoinColumn(name = "rol", referencedColumnName = "id_rol")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Rol rol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente", fetch = FetchType.LAZY)
     private List<Venta> ventaList;
 
@@ -143,13 +140,7 @@ public class Cliente implements Serializable, IEntitie {
         this.direccion = direccion;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
+    
 
     @XmlTransient
     public List<Venta> getVentaList() {

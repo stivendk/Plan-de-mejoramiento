@@ -14,8 +14,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -23,12 +21,12 @@ import javax.faces.context.FacesContext;
  */
 @Named(value = "clienteManagedBean")
 @SessionScoped
-public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
+public class ClienteManagedBean implements Serializable, Managedbean <Cliente> {
 
     private Cliente cliente;
     @EJB
     private ClienteFacadeLocal clientefc;
-
+    
     public ClienteManagedBean() {
     }
 
@@ -39,36 +37,30 @@ public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
+    
     @PostConstruct
-    public void init() {
+    public void init(){
         cliente = new Cliente();
     }
-
-    public void registrarCliente() {
-        try {
+    
+    public void registrarCliente(){
         clientefc.create(cliente);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se registro con exito.", ""));
-        } catch (Exception e) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Hubo un error.", ""));
-
-        }
     }
-
-    public void modificarCliente() {
+    
+    public void modificarCliente(){
         clientefc.edit(cliente);
     }
-
-    public void eliminarCliente(Cliente c) {
+    
+    public void eliminarCliente(Cliente c){
         clientefc.remove(cliente);
     }
-
-    public String actualizarCliente(Cliente cl) {
-        cliente = cl;
-        return "/pages/config";
+    
+    public String actualizarCliente(Cliente cs){
+        cliente = cs;
+        return "";
     }
-
-    public List<Cliente> listarCliente() {
+    
+    public List<Cliente> listarCliente(){
         return clientefc.findAll();
     }
 
@@ -76,4 +68,5 @@ public class ClienteManagedBean implements Serializable, Managedbean<Cliente> {
     public Cliente getObject(Integer i) {
         return clientefc.find(i);
     }
+    
 }

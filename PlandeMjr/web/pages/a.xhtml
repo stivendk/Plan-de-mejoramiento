@@ -88,7 +88,7 @@
                         </p:column>
                         <p:column>
                             <p:commandButton action="#{vehiculoManagedBean.actualizarVehiculo(item)}" value="Editar"/>
-                            <p:commandButton action="#{vehiculoManagedBean.eliminarVehiculo(item)}" value="Eliminar"/>
+                            <p:commandButton actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}" value="Eliminar"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>

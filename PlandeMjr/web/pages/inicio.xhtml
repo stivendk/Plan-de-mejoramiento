@@ -21,11 +21,7 @@
         }
         .post img
         {
-            filter: blur(2px);
-            -webkit-filter: blur(2px);
-            -moz-filter: blur(2px);
-            -o-filter: blur(2px);
-            -ms-filter: blur(2px);
+            
         }
         .post .content
         {
@@ -69,7 +65,7 @@
             <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
                 <ul class="nav navbar-nav">
                     <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
-                    <li class="le"><a class="le" href="a.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="gestion.xhtml">Gestionar Concesionario</a></li>
                     <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
                 </ul>
                 <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="tem"/>
@@ -85,7 +81,7 @@
                         <div class="col-sm-4 col-md-4">
                             <div class="post">
                                 <div class="post-img-content">
-                                    <img src="http://placehold.it/460x250/e67e22/ffffff&text;=HTML5" class="img-responsive" />
+                                    <img src="../resources/img/#{item.imagen}.jpg" class="img-responsive" width="460px" height="250px" />
                                     <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
                                         <b>#{item.marca}</b></span>
                                 </div>
@@ -94,7 +90,7 @@
                                         #{item.idConcecionario.nombre}
                                     </div>
                                     <div>
-                                        <p:commandButton value="Comprar" action="#{ventaManagedBean.comprarVehiculo(iteme, tem)}" class="btn btn-warning btn-sm"/>
+                                        <p:commandButton value="Comprar" action="/pages/venta" class="btn btn-warning btn-sm"/>
                                     </div>
                                 </div>
                             </div>

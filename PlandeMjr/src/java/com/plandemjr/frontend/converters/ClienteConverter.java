@@ -9,10 +9,16 @@ import com.plandemjr.backend.persistence.entities.Cliente;
 import com.plandemjr.frontend.util.AbstractConverter;
 import javax.faces.convert.FacesConverter;
 
+/**
+ *
+ * @author StivenDavid
+ */
 @FacesConverter(forClass = Cliente.class)
 public class ClienteConverter extends AbstractConverter{
-    
-    public ClienteConverter(){
+
+    public ClienteConverter() {
         this.nombreMB = "clienteManagedBean";
     }
+    
+    
 }

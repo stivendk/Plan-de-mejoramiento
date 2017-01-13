@@ -5,8 +5,6 @@
  */
 package com.plandemjr.frontend.controllers;
 
-import com.plandemjr.backend.persistence.entities.Cliente;
-import com.plandemjr.backend.persistence.entities.Vehiculo;
 import com.plandemjr.backend.persistence.entities.Venta;
 import com.plandemjr.backend.persistence.facade.VentaFacadeLocal;
 import javax.inject.Named;
@@ -24,12 +22,10 @@ import javax.ejb.EJB;
 @SessionScoped
 public class VentaManagedBean implements Serializable {
 
-    private Cliente cliente;
-    private Vehiculo vehi;
     private Venta venta;
     @EJB
     private VentaFacadeLocal ventafc;
-
+    
     public VentaManagedBean() {
     }
 
@@ -40,36 +36,18 @@ public class VentaManagedBean implements Serializable {
     public void setVenta(Venta venta) {
         this.venta = venta;
     }
-
+    
     @PostConstruct
-    public void init() {
+    public void init(){
         venta = new Venta();
     }
-
-    public void registrarVenta() {
+    
+    public void registrarVenta(){
         ventafc.create(venta);
     }
-
-    public void modificarVenta() {
-        ventafc.edit(venta);
-    }
-
-    public String actualizarVenta(Venta v) {
-        venta = v;
-        return "";
-    }
-
-    public void eliminarVenta(Venta va) {
-        ventafc.remove(venta);
-    }
-
-    public List<Venta> listarVenta() {
+    
+    public List<Venta> listarVenta(){
         return ventafc.findAll();
     }
     
-    public String comprarVehiculo(Vehiculo v, Cliente c){
-        vehi = v;
-        cliente = c;
-        return "/pages/venta";
-    }
 }

@@ -26,7 +26,7 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
     private Vehiculo vehi;
     @EJB
     private VehiculoFacadeLocal vehifc;
-
+    
     public VehiculoManagedBean() {
     }
 
@@ -37,30 +37,30 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
     public void setVehi(Vehiculo vehi) {
         this.vehi = vehi;
     }
-
+    
     @PostConstruct
-    public void init() {
+    public void init(){
         vehi = new Vehiculo();
     }
-
-    public void registrarVehiculo() {
+    
+    public void registrarVehiculo(){
         vehifc.create(vehi);
     }
-
-    public void modificiarVehiculo() {
+    
+    public void eliminarVehiculo(Vehiculo v){
+        vehifc.remove(v);
+    }
+    
+    public void modificarVehiculo(){
         vehifc.edit(vehi);
     }
-
-    public String actualizarVehiculo(Vehiculo v) {
-        vehi = v;
-        return "";
+    
+    public String actualizarVehiculo(Vehiculo vs){
+        vehi = vs;
+        return "/pages/vehiculo";
     }
-
-    public void eliminarVehiculo(Vehiculo vs) {
-        vehifc.remove(vehi);
-    }
-
-    public List<Vehiculo> listarVehiculo() {
+    
+    public List<Vehiculo> listarVehiculo(){
         return vehifc.findAll();
     }
 
@@ -68,4 +68,5 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
     public Vehiculo getObject(Integer i) {
         return vehifc.find(i);
     }
+    
 }

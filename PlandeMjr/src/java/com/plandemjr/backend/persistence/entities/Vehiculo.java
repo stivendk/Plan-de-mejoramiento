@@ -6,9 +6,7 @@
 package com.plandemjr.backend.persistence.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,12 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,13 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Vehiculo.findByIdVehiculo", query = "SELECT v FROM Vehiculo v WHERE v.idVehiculo = :idVehiculo"),
     @NamedQuery(name = "Vehiculo.findByMarca", query = "SELECT v FROM Vehiculo v WHERE v.marca = :marca"),
     @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo"),
-    @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")})
-public class Vehiculo implements Serializable, IEntitie {
-
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "lanzamiento")
-    private int lanzamiento;
+    @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio"),
+    @NamedQuery(name = "Vehiculo.findByLanzamiento", query = "SELECT v FROM Vehiculo v WHERE v.lanzamiento = :lanzamiento"),
+    @NamedQuery(name = "Vehiculo.findByImagen", query = "SELECT v FROM Vehiculo v WHERE v.imagen = :imagen")})
+public class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,8 +59,13 @@ public class Vehiculo implements Serializable, IEntitie {
     @NotNull
     @Column(name = "precio")
     private double precio;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVehiculo", fetch = FetchType.LAZY)
-    private List<Venta> ventaList;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "lanzamiento")
+    private int lanzamiento;
+    @Size(max = 50)
+    @Column(name = "imagen")
+    private String imagen;
     @JoinColumn(name = "idConcecionario", referencedColumnName = "nit")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Concesionario idConcecionario;
@@ -79,11 +77,12 @@ public class Vehiculo implements Serializable, IEntitie {
         this.idVehiculo = idVehiculo;
     }
 
-    public Vehiculo(Integer idVehiculo, String marca, String modelo, double precio) {
+    public Vehiculo(Integer idVehiculo, String marca, String modelo, double precio, int lanzamiento) {
         this.idVehiculo = idVehiculo;
         this.marca = marca;
         this.modelo = modelo;
         this.precio = precio;
+        this.lanzamiento = lanzamiento;
     }
 
     public Integer getIdVehiculo() {
@@ -118,13 +117,20 @@ public class Vehiculo implements Serializable, IEntitie {
         this.precio = precio;
     }
 
-    @XmlTransient
-    public List<Venta> getVentaList() {
-        return ventaList;
+    public int getLanzamiento() {
+        return lanzamiento;
     }
 
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
+    public void setLanzamiento(int lanzamiento) {
+        this.lanzamiento = lanzamiento;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Concesionario getIdConcecionario() {
@@ -155,22 +161,9 @@ public class Vehiculo implements Serializable, IEntitie {
         return true;
     }
 
-
-    @Override
-    public String getId() {
-        return idVehiculo.toString();
-    }
-
-    public int getLanzamiento() {
-        return lanzamiento;
-    }
-
-    public void setLanzamiento(int lanzamiento) {
-        this.lanzamiento = lanzamiento;
-    }
-    
     @Override
     public String toString() {
         return "com.plandemjr.backend.persistence.entities.Vehiculo[ idVehiculo=" + idVehiculo + " ]";
     }
+    
 }

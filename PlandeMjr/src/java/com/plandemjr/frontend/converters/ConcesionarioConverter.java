@@ -13,10 +13,11 @@ import javax.faces.convert.FacesConverter;
  *
  * @author StivenDavid
  */
-@FacesConverter(forClass = Concesionario.class)
+@FacesConverter(forClass =  Concesionario.class)
 public class ConcesionarioConverter extends AbstractConverter{
 
     public ConcesionarioConverter() {
-        this.nombreMB = "concesionarioManagedBean";
+        this.nombreMB = "conceseionarioManagedBean";
     }
+    
 }

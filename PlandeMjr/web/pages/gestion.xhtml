@@ -40,7 +40,7 @@
                             <p:outputLabel value="Concecionario:" for="idConcecionario" />
                             <p:selectOneMenu id="idConcecionario" value="#{vehiculoManagedBean.vehi.idConcecionario}" required="true" requiredMessage="The IdConcecionario field is required.">
                                 <!-- TODO: update below reference to list of available items-->
-                                <f:selectItems value="#{concesionarioManagedBean.listarConcesionario()}" var="concesionario" itemLabel="#{concesionario.nombre}"/>
+                                <f:selectItems value="#{conceseionarioManagedBean.listarConsesionario()}" var="concesionario" itemLabel="#{concesionario.nombre}"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="Lanzamiento:" for="lanzamiento" />
                             <p:inputText id="lanzamiento" value="#{vehiculoManagedBean.vehi.lanzamiento}" title="Lanzamiento" required="true" requiredMessage="The Lanzamiento field is required."/>
@@ -84,8 +84,14 @@
                             <h:outputText value="#{item.lanzamiento}"/>
                         </p:column>
                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="imagen"/>
+                            </f:facet>
+                            <h:outputText value="#{item.imagen}"/>
+                        </p:column>
+                        <p:column>
                             <p:commandButton action="#{vehiculoManagedBean.actualizarVehiculo(item)}" value="Editar"/>
-                            <p:commandButton action="#{vehiculoManagedBean.eliminarVehiculo(item)}" value="Eliminar"/>
+                            <p:commandButton actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}" value="Eliminar"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
