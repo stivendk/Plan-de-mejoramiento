@@ -26,6 +26,7 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
     private Vehiculo vehi;
     @EJB
     private VehiculoFacadeLocal vehifc;
+    private String resultado;
     
     public VehiculoManagedBean() {
     }
@@ -64,9 +65,21 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
         return vehifc.findAll();
     }
 
+    public List<Vehiculo> consultarReciente(){
+        return vehifc.marcaReciente();
+    }
+            
     @Override
     public Vehiculo getObject(Integer i) {
         return vehifc.find(i);
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
     }
     
 }

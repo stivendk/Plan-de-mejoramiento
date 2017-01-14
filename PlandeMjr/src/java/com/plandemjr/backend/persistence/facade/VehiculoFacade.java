@@ -6,9 +6,11 @@
 package com.plandemjr.backend.persistence.facade;
 
 import com.plandemjr.backend.persistence.entities.Vehiculo;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,13 @@ public class VehiculoFacade extends AbstractFacade<Vehiculo> implements Vehiculo
 
     public VehiculoFacade() {
         super(Vehiculo.class);
+    }
+
+    @Override
+    public List<Vehiculo> marcaReciente() {
+        Query query = em.createNativeQuery("SELECT modelo, marca, imagen, MAX(lanzamiento)"
+            + "FROM vehiculo");
+        return query.getResultList();
     }
     
 }

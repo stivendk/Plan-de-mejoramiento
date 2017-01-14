@@ -47,54 +47,8 @@
                         </p:panelGrid>
                         <p:commandButton value="Añadir" actionListener="#{vehiculoManagedBean.registrarVehiculo()}"/>
                     </h:form></center>
-
-
-
-                <h:form>
-                    <h1><h:outputText value="List"/></h1>
-                    <p:dataTable value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Marca"/>
-                            </f:facet>
-                            <h:outputText value="#{item.marca}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Modelo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.modelo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Precio"/>
-                            </f:facet>
-                            <h:outputText value="#{item.precio}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdConcecionario"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idConcecionario.nombre}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Lanzamiento"/>
-                            </f:facet>
-                            <h:outputText value="#{item.lanzamiento}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="imagen"/>
-                            </f:facet>
-                            <h:outputText value="#{item.imagen}"/>
-                        </p:column>
-                        <p:column>
-                            <p:commandButton action="#{vehiculoManagedBean.actualizarVehiculo(item)}" value="Editar"/>
-                            <p:commandButton actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}" value="Eliminar"/>
-                        </p:column>
-                    </p:dataTable>
-                </h:form>
+                <br/>
+                <a href="a.xhtml" class="btn btn-block btn-warning">Gestionar Vehiculos</a>
             </f:view>
         </div>
         </h:form>

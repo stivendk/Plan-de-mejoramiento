@@ -11,8 +11,53 @@
         <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
         <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
         <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
-        <script src="../resources/js/jquery-2.2.3.min.js"></script>
-        <script src="../resources/js/carousel.js"></script>
+        <style>
+            .post
+            {
+                background-color: #FFF;
+                overflow: hidden;
+                box-shadow: 0 0 1px #CCC;
+            }
+            .post img
+            {
+
+            }
+            .post .content
+            {
+                padding: 15px;
+            }
+            .post .author
+            {
+                font-size: 11px;
+                color: #737373;
+                padding: 25px 30px 20px;
+            }
+            .post .post-img-content
+            {
+                height: 196px;
+                position: relative;
+            }
+            .post .post-img-content img
+            {
+                position: absolute;
+            }
+            .post .post-title
+            {
+                display: table-cell;
+                vertical-align: bottom;
+                z-index: 2;
+                position: relative;
+            }
+            .post .post-title b
+            {
+                background-color: rgba(51, 51, 51, 0.58);
+                display: inline-block;
+                margin-bottom: 5px;
+                color: #FFF;
+                padding: 10px 15px;
+                margin-top: 5px;
+            }
+        </style>
     </head>
 
     <h:body>
@@ -31,69 +76,37 @@
         <br></br>
         <div>
             <f:view>
-                <center><h:form>
-                        <h1><h:outputText value="Añadir vehiculo"/></h1>
-                        <p:panelGrid columns="2">
-                            <p:outputLabel value="Marca:" for="marca" />
-                            <p:inputText id="marca" value="#{vehiculoManagedBean.vehi.marca}" title="Marca" required="true" requiredMessage="The Marca field is required."/>
-                            <p:outputLabel value="Modelo:" for="modelo" />
-                            <p:inputText id="modelo" value="#{vehiculoManagedBean.vehi.modelo}" title="Modelo" required="true" requiredMessage="The Modelo field is required."/>
-                            <p:outputLabel value="Precio:" for="precio" />
-                            <p:inputText id="precio" value="#{vehiculoManagedBean.vehi.precio}" title="Precio" required="true" requiredMessage="The Precio field is required."/>
-                            <p:outputLabel value="Concecionario:" for="idConcecionario" />
-                            <p:selectOneMenu id="idConcecionario" value="#{vehiculoManagedBean.vehi.idConcecionario}" required="true" requiredMessage="The IdConcecionario field is required.">
-                                <!-- TODO: update below reference to list of available items-->
-                                <f:selectItems value="#{concesionarioManagedBean.listarConcesionario()}" var="concesionario" itemLabel="#{concesionario.nombre}"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Lanzamiento:" for="lanzamiento" />
-                            <p:inputText id="lanzamiento" value="#{vehiculoManagedBean.vehi.lanzamiento}" title="Lanzamiento" required="true" requiredMessage="The Lanzamiento field is required."/>
-                        </p:panelGrid>
-                        <p:commandButton value="Añadir" actionListener="#{vehiculoManagedBean.registrarVehiculo()}"/>
-                    </h:form></center>
-
-
-
                 <h:form>
-                    <h1><h:outputText value="List"/></h1>
-                    <p:dataTable value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Marca"/>
-                            </f:facet>
-                            <h:outputText value="#{item.marca}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Modelo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.modelo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Precio"/>
-                            </f:facet>
-                            <h:outputText value="#{item.precio}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdConcecionario"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idConcecionario.nombre}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Lanzamiento"/>
-                            </f:facet>
-                            <h:outputText value="#{item.lanzamiento}"/>
-                        </p:column>
-                        <p:column>
-                            <p:commandButton action="#{vehiculoManagedBean.actualizarVehiculo(item)}" value="Editar"/>
-                            <p:commandButton actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}" value="Eliminar"/>
-                        </p:column>
-                    </p:dataTable>
+                    <center><h1><h:outputText value="Gestionar Vehiculos"/></h1></center>
+                    <div class="container">
+                        <div class="row">
+                            <ui:repeat value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
+                                <div class="col-sm-4 col-md-4">
+                                    <div class="post">
+                                        <div class="post-img-content">
+                                            <img src="../resources/img/#{item.imagen}.jpg" class="img-responsive" width="460px" height="250px" />
+                                            <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
+                                                <b>#{item.marca}</b></span>
+                                        </div>
+                                        <div class="content">
+                                            <div>
+                                                #{item.idConcecionario.nombre}
+                                            </div>
+                                            <div>
+                                                <p:commandButton action="#{vehiculoManagedBean.actualizarVehiculo(item)}" class="btn btn-warning btn-sm" value="Editar"/>
+                                                <p:commandButton actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}" class="btn btn-warning btn-sm" value="Eliminar"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
                 </h:form>
             </f:view>
         </div>
+        <script src="../resources/js/jquery-2.2.3.min.js"></script>
+        <script src="../resources/js/carousel.js"></script>
     </h:body>
 </html>
 

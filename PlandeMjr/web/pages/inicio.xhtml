@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
     <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
     <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
-    <f:event type="preRenderView" listener="#{seguridadController.verificarSesion()}"/>
     <style>
         .post
         {
@@ -21,7 +20,7 @@
         }
         .post img
         {
-            
+
         }
         .post .content
         {
@@ -61,7 +60,7 @@
     </style>
 
     <h:body>
-        <h:form>
+        <h:form >
             <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
                 <ul class="nav navbar-nav">
                     <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
@@ -75,32 +74,46 @@
                 </ul>
             </div>
             <br></br>
-            <div class="container">
-                <div class="row">
-                    <ui:repeat value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
-                        <div class="col-sm-4 col-md-4">
-                            <div class="post">
-                                <div class="post-img-content">
-                                    <img src="../resources/img/#{item.imagen}.jpg" class="img-responsive" width="460px" height="250px" />
-                                    <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
-                                        <b>#{item.marca}</b></span>
-                                </div>
-                                <div class="content">
-                                    <div>
-                                        #{item.idConcecionario.nombre}
+            <center><div class="btn-group">
+                    <h2>Consultas</h2>
+                    <p:commandButton value="Auto Blitz"/>
+                    <p:commandButton value="Jorge Cortes y Cia"/>
+                    <p:commandButton value="Los Coches Volvo en Morato"/>
+                    <p:commandButton value="Casa Toro Usados"/>
+                    <p:commandButton value="Los Coches Ford"/>
+                    <p:commandButton value="Vehiculo mas economico"/>
+                    <p:commandButton value="Vehiculo mas reciente" actionListener="#{vehiculoManagedBean.consultarReciente()}" update="form2"/>
+                    <p:commandButton value="Vehiculo mas solicitado"/>
+                </div></center>
+            <h:form id="form2">
+                <div class="container">
+                    <div class="row">
+                        <br/>
+                        <ui:repeat value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="post">
+                                    <div class="post-img-content">
+                                        <img src="../resources/img/#{item.imagen}.jpg" class="img-responsive" width="460px" height="250px" />
+                                        <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
+                                            <b>#{item.marca}</b></span>
                                     </div>
-                                    <div>
-                                        <p:commandButton value="Comprar" action="/pages/venta" class="btn btn-warning btn-sm"/>
+                                    <div class="content">
+                                        <div>
+                                            #{item.idConcecionario.nombre}
+                                        </div>
+                                        <div>
+                                            <p:commandButton value="Comprar" action="/pages/venta" class="btn btn-warning btn-sm"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </ui:repeat>
+                        </ui:repeat>
+                    </div>
                 </div>
-            </div>
+            </h:form>
+            <script src="../resources/js/jquery-2.2.3.min.js"></script>
+            <script src="../resources/js/carousel.js"></script>
         </h:form>
-    <script src="../js/jquery-2.2.3.min.js"></script>
-    <script src="../js/carousel.js"></script>
     </h:body>
 </html>
 

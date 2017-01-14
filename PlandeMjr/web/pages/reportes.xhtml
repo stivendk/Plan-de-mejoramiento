@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <title>Reportes</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+                <ul class="nav navbar-nav">
+                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
+                    <li class="le"><a class="le" href="gestion.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
+                </ul>
+                <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="tem"/>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="le"><a class="le" href="a.xhtml" action="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
+                    <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <br/>
+            <f:view>
+                <h:form>
+                    <center><h1><h:outputText value="Reportes"/></h1></center>
+                    <p:dataTable value="#{ventaManagedBean.listarVenta()}" var="item">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Vehiculo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idVehiculo.modelo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdCliente"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente.nombre}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+        </h:form>
+    </h:body>
+</html>
+
