@@ -33,8 +33,7 @@ public class VehiculoFacade extends AbstractFacade<Vehiculo> implements Vehiculo
 
     @Override
     public List<Vehiculo> marcaReciente() {
-        Query query = em.createNativeQuery("SELECT modelo, marca, imagen, MAX(lanzamiento)"
-            + "FROM vehiculo");
+        Query query = em.createNativeQuery("SELECT modelo, marca, imagen, MAX(lanzamiento)FROM vehiculo");
         return query.getResultList();
     }
     
