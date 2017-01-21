@@ -3,13 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
         <title>Registro</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
     </h:head>
     <h:body>
-        <center><h:form>
+        <h:form>
+            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+                <ul class="nav navbar-nav">
+                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
+                    <li class="le"><a class="le" href="a.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
+                    <li class="le"><a class="le" href="registro.xhtml">Registrar cliente</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <br></br>
+            <center><h:form>
                 <p:messages autoUpdate="true"/>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Nombre:" for="nombre" />
@@ -27,6 +45,7 @@
                 </p:panelGrid>
                 <p:commandButton value="Registrar" action="#{clienteManagedBean.registrarCliente()}"/>
             </h:form></center>
+        </h:form>
     </h:body>
 </html>
 

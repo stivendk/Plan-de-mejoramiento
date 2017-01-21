@@ -28,9 +28,9 @@
                 </ul>
             </div>
             <br></br>
-            <p:commandButton value="Volver" action="/pages/a?faces-redirect=true"/>
+            <p:commandButton value="Volver" action="/pages/inicio?faces-redirect=true"/>
             <f:view>
-                <center><h:form>
+                <h:form>
                     <h1><h:outputText value="#{vehiculoManagedBean.vehi.modelo}"/></h1>
                     <p:panelGrid columns="2">
                         <p:outputLabel value="Marca:" for="marca" />
@@ -41,16 +41,8 @@
                         <p:inputText id="precio" value="#{vehiculoManagedBean.vehi.precio}" title="Precio" required="true" requiredMessage="The Precio field is required."/>
                         <p:outputLabel value="Lanzamiento:" for="lanzamiento" />
                         <p:inputText id="lanzamiento" value="#{vehiculoManagedBean.vehi.lanzamiento}" title="Lanzamiento" required="true" requiredMessage="The Lanzamiento field is required."/>
-                        <p:outputLabel value="Imagen:" for="imagen" />
-                        <p:inputText id="imagen" value="#{vehiculoManagedBean.vehi.imagen}" title="Imagen" />
-                        <p:outputLabel value="Concecionario:" for="idConcecionario" />
-                        <p:selectOneMenu id="idConcecionario" value="#{vehiculoManagedBean.vehi.idConcecionario}" required="true" requiredMessage="The IdConcecionario field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{conceseionarioManagedBean.listarConsesionario()}" var="conce" itemLabel="#{conce.nombre}"/>
-                        </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{vehiculoManagedBean.modificarVehiculo()}" value="Modificar"/>
-                </h:form></center>
+                </h:form>
             </f:view>
         </h:form>
     </h:body>

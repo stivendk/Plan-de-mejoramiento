@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -7,29 +7,40 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-    <body>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
+        <title>Plan de mejoramiento</title>
+       
+    </h:head>
 
-        <ui:composition template="./inicioo.xhtml">
+    <h:body>
 
-            <ui:define name="top">
+        <div id="top" class="top">
+            <ui:insert name="top">
                 <h:form >
                     <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
                         <ul class="nav navbar-nav">
                             <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
                             <li class="le"><a class="le" href="gestion.xhtml">Gestionar Concesionario</a></li>
                             <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
-                            <li class="le"><a class="le" href="registro.xhtml">Registrar cliente</a></li>
                             <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
                         </ul>
+                        <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="tem"/>
                         <ul class="nav navbar-nav navbar-right">
+                            <li class="le"><a class="le" href="a.xhtml" action="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
                             <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                         </ul>
                     </div>
                     <br></br>
                 </h:form>
-            </ui:define>
+            </ui:insert>
+        </div>
 
-            <ui:define name="content">
+        <div id="content" class="center_content">
+            <ui:insert name="content">
                 <h:form>
                     <center><div class="btn-group">
                             <h2>Consultas</h2>
@@ -59,6 +70,7 @@
                                                     #{item.idConcecionario.nombre}
                                                 </div>
                                                 <div>
+                                                    <p:commandButton value="Informacion" action="#{vehiculoManagedBean.verVehiculo(item)}" class="btn btn-warning btn-sm"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -68,9 +80,9 @@
                         </div>
                     </h:form>
                 </h:form>
-            </ui:define>
+            </ui:insert>
+        </div>
+        <script src="../resources/js/jquery-2.2.3.min.js"></script>
+    </h:body>
 
-        </ui:composition>
-
-    </body>
 </html>

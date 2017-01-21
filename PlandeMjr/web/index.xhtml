@@ -10,16 +10,16 @@
     </h:head>
     <h:body>
         <h:form>
-            <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="cliente"/>
+            <ui:repeat value="#{conceseionarioManagedBean.listarConsesionario()}" var="conce"/>
             <p:messages autoUpdate="true"/>
             <h:panelGrid columns="2" cellpadding="5">
-                <h:outputLabel for="correo" value="Correo:" />
-                <p:inputText id="correo" type="email" value="#{loginManagedBean.cliente.correo}" required="true" label="username" />
+                <h:outputLabel for="concesionario" value="Concesionario:" />
+                <p:inputText id="concesionario"  value="#{loginManagedBean.conce.nombre}" required="true" label="username" />
 
                 <h:outputLabel for="password" value="Password:" />
-                <p:password id="password" value="#{loginManagedBean.cliente.password}" required="true" label="password" />
+                <p:password id="password" value="#{loginManagedBean.conce.password}" required="true" label="password" />
 
-                <p:commandButton value="Login" action="#{loginManagedBean.iniciarSesion(item)}"/>
+                <p:commandButton value="Login" action="#{loginManagedBean.iniciarSesion(conce)}"/>
             </h:panelGrid>
             <p:separator/>
             <p:link value="Crear cuenta" outcome="registro"/>

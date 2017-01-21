@@ -5,7 +5,7 @@
  */
 package com.plandemjr.frontend.controllers;
 
-import com.plandemjr.backend.persistence.entities.Cliente;
+import com.plandemjr.backend.persistence.entities.Concesionario;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -22,8 +22,8 @@ public class SeguridadController implements Serializable{
     public void verificarSesion() throws Exception {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
-            Cliente cl = (Cliente) context.getExternalContext().getSessionMap().get("cliente");
-            if (cl == null) {
+            Concesionario c = (Concesionario) context.getExternalContext().getSessionMap().get("concesionario");
+            if (c == null) {
                 context.getExternalContext().redirect("../permisos.xhtml");
             }
         } catch (Exception e) {

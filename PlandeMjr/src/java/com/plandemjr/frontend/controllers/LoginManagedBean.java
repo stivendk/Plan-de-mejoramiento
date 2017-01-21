@@ -5,8 +5,8 @@
  */
 package com.plandemjr.frontend.controllers;
 
-import com.plandemjr.backend.persistence.entities.Cliente;
-import com.plandemjr.backend.persistence.facade.ClienteFacadeLocal;
+import com.plandemjr.backend.persistence.entities.Concesionario;
+import com.plandemjr.backend.persistence.facade.ConcesionarioFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -23,31 +23,31 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class LoginManagedBean implements Serializable {
 
-    private Cliente cliente;
+    private Concesionario conce;
     @EJB
-    private ClienteFacadeLocal clientefc;
+    private ConcesionarioFacadeLocal concefc;
     
     public LoginManagedBean() {
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Concesionario getConce() {
+        return conce;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setConce(Concesionario conce) {
+        this.conce = conce;
     }
     
     @PostConstruct
     public void init(){
-        cliente = new Cliente();
+        conce = new Concesionario();
     }
     
-    public String iniciarSesion(Cliente cl){
+    public String iniciarSesion(Concesionario cl){
         String redir = null;
         try {
-            if (clientefc.iniciarSesion(cliente)!=null) {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cliente);
+            if (concefc.iniciarSesion(conce)!=null) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("concesionario", conce);
             redir = "/pages/inicio?faces-redirect=true";
             }else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
@@ -62,4 +62,5 @@ public class LoginManagedBean implements Serializable {
         
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
+
 }

@@ -35,9 +35,16 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Concesionario.findAll", query = "SELECT c FROM Concesionario c"),
     @NamedQuery(name = "Concesionario.findByNit", query = "SELECT c FROM Concesionario c WHERE c.nit = :nit"),
     @NamedQuery(name = "Concesionario.findByNombre", query = "SELECT c FROM Concesionario c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Concesionario.findByPassword", query = "SELECT c FROM Concesionario c WHERE c.password = :password"),
     @NamedQuery(name = "Concesionario.findByTelefono", query = "SELECT c FROM Concesionario c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Concesionario.findByDireccion", query = "SELECT c FROM Concesionario c WHERE c.direccion = :direccion")})
 public class Concesionario implements Serializable, IEntitie {
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "password")
+    private String password;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -146,6 +153,14 @@ public class Concesionario implements Serializable, IEntitie {
     @Override
     public String getId() {
         return nit.toString();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }

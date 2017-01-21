@@ -38,7 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
     @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "Cliente.findByCorreo", query = "SELECT c FROM Cliente c WHERE c.correo = :correo"),
-    @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password"),
     @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
 public class Cliente implements Serializable,IEntitie {
@@ -61,11 +60,6 @@ public class Cliente implements Serializable,IEntitie {
     private String correo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "password")
-    private String password;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "telefono")
     private int telefono;
     @Basic(optional = false)
@@ -83,11 +77,10 @@ public class Cliente implements Serializable,IEntitie {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, String nombre, String correo, String password, int telefono, String direccion) {
+    public Cliente(Integer idCliente, String nombre, String correo, int telefono, String direccion) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.correo = correo;
-        this.password = password;
         this.telefono = telefono;
         this.direccion = direccion;
     }
@@ -114,14 +107,6 @@ public class Cliente implements Serializable,IEntitie {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getTelefono() {

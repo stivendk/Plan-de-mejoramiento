@@ -61,6 +61,11 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
         return "/pages/vehiculo";
     }
     
+    public String verVehiculo(Vehiculo v){
+        vehi = v;
+        return "/pages/infoVehi";
+    }
+    
     public List<Vehiculo> listarVehiculo(){
         return vehifc.findAll();
     }

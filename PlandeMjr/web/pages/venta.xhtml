@@ -19,10 +19,10 @@
                 <ul class="nav navbar-nav">
                     <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
                     <li class="le"><a class="le" href="a.xhtml">Gestionar Concesionario</a></li>
-                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
-                    <li class="le"><a class="le" href="">#{loginManagedBean.cliente.nombre}</a></li>                
+                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
+                    <li class="le"><a class="le" href="registro.xhtml">Registrar cliente</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>
                 </ul>
-                <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="tem"/>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                 </ul>
