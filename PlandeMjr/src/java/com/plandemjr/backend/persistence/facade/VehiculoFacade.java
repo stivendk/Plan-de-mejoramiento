@@ -10,7 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -33,8 +33,9 @@ public class VehiculoFacade extends AbstractFacade<Vehiculo> implements Vehiculo
 
     @Override
     public List<Vehiculo> marcaReciente() {
-        Query query = em.createNativeQuery("SELECT modelo, marca, imagen, MAX(lanzamiento)FROM vehiculo");
-        return query.getResultList();
+        TypedQuery<Vehiculo> query;
+        query = em.createQuery("SELECT v.idVehiculo, v.marca, v.modelo, v.imagen, MAX(v.lanzamiento)FROM Vehiculo v", Vehiculo.class);
+        List<Vehiculo> reciente = query.getResultList();
+        return reciente;
     }
-    
 }

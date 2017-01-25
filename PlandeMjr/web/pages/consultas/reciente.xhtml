@@ -67,9 +67,7 @@
                     <li class="le"><a class="le" href="gestion.xhtml">Gestionar Concesionario</a></li>
                     <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
                 </ul>
-                <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="tem"/>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="le"><a class="le" href="a.xhtml" action="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
                     <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                 </ul>
             </div>
@@ -87,6 +85,8 @@
                 </div></center>
             
             <f:view>
+
+
                 <h:form>
                     <h1><h:outputText value="List"/></h1>
                     <p:dataTable value="#{vehiculoManagedBean.consultarReciente()}" var="item">
@@ -104,9 +104,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Precio"/>
+                                <h:outputText value="Imagen"/>
                             </f:facet>
-                            <h:outputText value="#{item.precio}"/>
+                            <h:graphicImage url="resources/img/#{item.imagen}.jpg"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -114,15 +114,10 @@
                             </f:facet>
                             <h:outputText value="#{item.lanzamiento}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Imagen"/>
-                            </f:facet>
-                            <h:outputText value="#{item.imagen}"/>
-                        </p:column>
                     </p:dataTable>
                 </h:form>
             </f:view>
+
         </h:form>
     </h:body>
 </html>

@@ -73,7 +73,7 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
     public List<Vehiculo> consultarReciente(){
         return vehifc.marcaReciente();
     }
-            
+    
     @Override
     public Vehiculo getObject(Integer i) {
         return vehifc.find(i);
