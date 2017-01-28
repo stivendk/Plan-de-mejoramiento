@@ -38,4 +38,9 @@ public class VehiculoFacade extends AbstractFacade<Vehiculo> implements Vehiculo
         List<Vehiculo> reciente = query.getResultList();
         return reciente;
     }
+
+    @Override
+    public List<Vehiculo> precioAlto(int precio) {
+        return em.createNamedQuery("Vehiculo.consultaPrecio").setParameter("precio", precio).getResultList();
+    }
 }

@@ -21,13 +21,14 @@ import javax.ejb.EJB;
  */
 @Named(value = "vehiculoManagedBean")
 @SessionScoped
-public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo> {
+public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> {
 
     private Vehiculo vehi;
     @EJB
     private VehiculoFacadeLocal vehifc;
-    private String resultado;
-    
+    private int precio;
+    private List<Vehiculo> resultado;
+
     public VehiculoManagedBean() {
     }
 
@@ -38,53 +39,65 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
     public void setVehi(Vehiculo vehi) {
         this.vehi = vehi;
     }
-    
+
+    public List<Vehiculo> getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(List<Vehiculo> resultado) {
+        this.resultado = resultado;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
     @PostConstruct
-    public void init(){
+    public void init() {
         vehi = new Vehiculo();
     }
-    
-    public void registrarVehiculo(){
+
+    public void registrarVehiculo() {
         vehifc.create(vehi);
     }
-    
-    public void eliminarVehiculo(Vehiculo v){
+
+    public void eliminarVehiculo(Vehiculo v) {
         vehifc.remove(v);
     }
-    
-    public void modificarVehiculo(){
+
+    public void modificarVehiculo() {
         vehifc.edit(vehi);
     }
-    
-    public String actualizarVehiculo(Vehiculo vs){
+
+    public String actualizarVehiculo(Vehiculo vs) {
         vehi = vs;
         return "/pages/vehiculo";
     }
-    
-    public String verVehiculo(Vehiculo v){
+
+    public String verVehiculo(Vehiculo v) {
         vehi = v;
         return "/pages/infoVehi";
     }
-    
-    public List<Vehiculo> listarVehiculo(){
+
+    public List<Vehiculo> listarVehiculo() {
         return vehifc.findAll();
     }
 
-    public List<Vehiculo> consultarReciente(){
+    public List<Vehiculo> consultarReciente() {
         return vehifc.marcaReciente();
     }
-    
+
     @Override
     public Vehiculo getObject(Integer i) {
         return vehifc.find(i);
     }
 
-    public String getResultado() {
-        return resultado;
+    public void precioSuministrado() {
+        resultado = vehifc.precioAlto(precio);
     }
 
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
-    }
-    
 }
