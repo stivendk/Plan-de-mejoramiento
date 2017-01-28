@@ -84,32 +84,39 @@
                 <h:form>
                     <p:messages autoUpdate="true"/>
                     <p:column>
-                        <h:commandButton value="Valorar" actionListener="#{vehiculoManagedBean.consultarReciente()}"/>
+                        <h:commandButton value="Valorar" actionListener="#{vehiculoManagedBean.masVendido()}"/>
                     </p:column>
-                    <h:form id="form2">
-                        <div class="container">
-                            <div class="row">
-                                <br/>
-                                <ui:repeat value="#{vehiculoManagedBean.resultado}" var="item">
-                                    <div class="col-sm-4 col-md-4">
-                                        <div class="post">
-                                            <div class="post-img-content">
-                                                <img src="../../resources/img/#{item.imagen}.jpg" class="img-responsive" width="460px" height="250px" />
-                                                <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
-                                                    <b>#{item.marca}</b></span>
-                                            </div>
-                                            <div class="content">
-                                                <div>
-                                                    #{item.idConcecionario.nombre}
-                                                </div>
-                                                <div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ui:repeat>
-                            </div>
-                        </div>
+
+
+
+                    <h:form>
+                        <h1><h:outputText value="List"/></h1>
+                        <p:dataTable value="#{vehiculoManagedBean.resultado}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Marca"/>
+                                </f:facet>
+                                <h:outputText value="#{item.marca}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Modelo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.modelo}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Precio"/>
+                                </f:facet>
+                                <h:outputText value="#{item.precio}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Lanzamiento"/>
+                                </f:facet>
+                                <h:outputText value="#{item.lanzamiento}"/>
+                            </p:column>
+                        </p:dataTable>
                     </h:form>
 
                 </h:form>

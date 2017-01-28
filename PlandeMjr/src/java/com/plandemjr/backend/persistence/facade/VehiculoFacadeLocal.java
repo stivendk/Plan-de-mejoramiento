@@ -30,8 +30,12 @@ public interface VehiculoFacadeLocal {
 
     int count();
     
-    List<Vehiculo> marcaReciente();
+    List<Vehiculo> marcaReciente(int lanzamiento);
     
     List<Vehiculo> precioAlto(int precio);
+    
+    List<Vehiculo> precioBajo(int precio);
+    
+    //List<Vehiculo> masVendido(int vehiculo);
     
 }

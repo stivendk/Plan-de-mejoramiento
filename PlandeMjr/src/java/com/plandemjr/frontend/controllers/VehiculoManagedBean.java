@@ -27,7 +27,10 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
     @EJB
     private VehiculoFacadeLocal vehifc;
     private int precio;
+    private int vehiculo;
+    private int preciob = 9;
     private List<Vehiculo> resultado;
+    private int lanzamiento = 2017;
 
     public VehiculoManagedBean() {
     }
@@ -54,6 +57,22 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    public int getLanzamiento() {
+        return lanzamiento;
+    }
+
+    public void setLanzamiento(int lanzamiento) {
+        this.lanzamiento = lanzamiento;
+    }
+
+    public int getPreciob() {
+        return preciob;
+    }
+
+    public void setPreciob(int preciob) {
+        this.preciob = preciob;
     }
 
     @PostConstruct
@@ -87,8 +106,8 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
         return vehifc.findAll();
     }
 
-    public List<Vehiculo> consultarReciente() {
-        return vehifc.marcaReciente();
+    public void consultarReciente() {
+        resultado = vehifc.marcaReciente(lanzamiento);
     }
 
     @Override
@@ -100,4 +119,20 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
         resultado = vehifc.precioAlto(precio);
     }
 
+    public void precioEconomico() {
+        resultado = vehifc.precioBajo(preciob);
+    }
+
+    public int getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(int vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+    
+    /*public void masVendido(){
+        resultado = vehifc.masVendido(vehiculo);
+    }
+    */
 }

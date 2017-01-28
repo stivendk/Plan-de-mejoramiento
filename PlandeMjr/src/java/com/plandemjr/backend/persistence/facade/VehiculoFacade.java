@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -32,15 +31,23 @@ public class VehiculoFacade extends AbstractFacade<Vehiculo> implements Vehiculo
     }
 
     @Override
-    public List<Vehiculo> marcaReciente() {
-        TypedQuery<Vehiculo> query;
-        query = em.createQuery("SELECT v.idVehiculo, v.marca, v.modelo, v.imagen, MAX(v.lanzamiento)FROM Vehiculo v", Vehiculo.class);
-        List<Vehiculo> reciente = query.getResultList();
-        return reciente;
-    }
-
-    @Override
     public List<Vehiculo> precioAlto(int precio) {
         return em.createNamedQuery("Vehiculo.consultaPrecio").setParameter("precio", precio).getResultList();
     }
+
+    @Override
+    public List<Vehiculo> marcaReciente(int lanzamiento) {
+        return em.createNamedQuery("Vehiculo.consultaReciente").setParameter("lanzamiento", lanzamiento).getResultList();
+    }
+
+    @Override
+    public List<Vehiculo> precioBajo(int precio) {
+        return em.createNamedQuery("Vehiculo.consultaPrecioE").setParameter("precio", precio).getResultList();
+    }
+
+    /*@Override
+    //public List<Vehiculo> masVendido(int vehiculo) {
+        return em.createNamedQuery("Vehiculo.masVendido").setParameter("idVehiculo", vehiculo).getResultList();
+    }
+    */
 }

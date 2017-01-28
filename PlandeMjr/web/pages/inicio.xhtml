@@ -33,14 +33,10 @@
                 <h:form>
                     <center><div class="btn-group">
                             <h2>Consultas</h2>
-                            <p:commandButton value="Auto Blitz"/>
-                            <p:commandButton value="Jorge Cortes y Cia"/>
-                            <p:commandButton value="Los Coches Volvo en Morato"/>
-                            <p:commandButton value="Casa Toro Usados"/>
-                            <p:commandButton value="Los Coches Ford"/>
-                            <p:commandButton value="Vehiculo mas economico"/>
-                            <p:commandButton value="Vehiculo mas reciente" actionListener="#{vehiculoManagedBean.consultarReciente()}" update="form2"/>
-                            <p:commandButton value="Vehiculo mas solicitado"/>
+                            <p:commandButton value="Vehiculo mas economico" action="/pages/consultas/economico?faces-redirect=true"/>
+                            <p:commandButton value="Vehiculo mas vendido" action="/pages/consultas/masvendido?faces-redirect=true"/>
+                            <p:commandButton value="Valorar suministro" action="/pages/consultas/precioSuminis?faces-redirect=true"/>
+                            <p:commandButton value="Vehiculo reciente" action="/pages/consultas/reciente?faces-redirect=true"/>
                         </div></center>
                     <h:form id="form2">
                         <div class="container">

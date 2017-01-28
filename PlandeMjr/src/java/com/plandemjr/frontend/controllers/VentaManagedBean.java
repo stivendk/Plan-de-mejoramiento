@@ -25,7 +25,9 @@ public class VentaManagedBean implements Serializable {
     private Venta venta;
     @EJB
     private VentaFacadeLocal ventafc;
-    
+    private int vehiculo;
+    private List<Venta> resultado;
+
     public VentaManagedBean() {
     }
 
@@ -36,18 +38,38 @@ public class VentaManagedBean implements Serializable {
     public void setVenta(Venta venta) {
         this.venta = venta;
     }
-    
+
+    public List<Venta> getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(List<Venta> resultado) {
+        this.resultado = resultado;
+    }
+
+    public int getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(int vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
     @PostConstruct
-    public void init(){
+    public void init() {
         venta = new Venta();
     }
-    
-    public void registrarVenta(){
+
+    public void registrarVenta() {
         ventafc.create(venta);
     }
-    
-    public List<Venta> listarVenta(){
+
+    public List<Venta> listarVenta() {
         return ventafc.findAll();
     }
-    
+
+    public void masVendido() {
+        resultado = ventafc.masVendido(vehiculo);
+    }
+
 }

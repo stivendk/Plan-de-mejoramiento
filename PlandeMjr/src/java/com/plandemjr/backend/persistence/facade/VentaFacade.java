@@ -6,6 +6,7 @@
 package com.plandemjr.backend.persistence.facade;
 
 import com.plandemjr.backend.persistence.entities.Venta;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,11 @@ public class VentaFacade extends AbstractFacade<Venta> implements VentaFacadeLoc
 
     public VentaFacade() {
         super(Venta.class);
+    }
+
+    @Override
+    public List<Venta> masVendido(int vehiculo) {
+        return em.createNamedQuery("Venta.masVendido").setParameter("idVehiculo", vehiculo).getResultList();
     }
     
 }

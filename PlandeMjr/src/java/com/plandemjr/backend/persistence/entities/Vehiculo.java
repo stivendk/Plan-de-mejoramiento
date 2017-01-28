@@ -32,11 +32,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Vehiculo.findAll", query = "SELECT v FROM Vehiculo v"),
     @NamedQuery(name = "Vehiculo.findByIdVehiculo", query = "SELECT v FROM Vehiculo v WHERE v.idVehiculo = :idVehiculo"),
+    //@NamedQuery(name = "Vehiculo.masVendido", query = "SELECT v FROM Vehiculo v JOIN Venta a  :idVehiculo"),
     @NamedQuery(name = "Vehiculo.findByMarca", query = "SELECT v FROM Vehiculo v WHERE v.marca = :marca"),
-    @NamedQuery(name = "Vehiculo.consultaReciente", query = "SELECT v FROM Vehiculo v WHERE v.marca > :marca"),
+    @NamedQuery(name = "Vehiculo.findByLanzamiento", query = "SELECT v FROM Vehiculo v WHERE v.lanzamiento = :lanzamiento"),
+    @NamedQuery(name = "Vehiculo.consultaReciente", query = "SELECT v FROM Vehiculo v WHERE v.lanzamiento LIKE :lanzamiento"),
     @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo"),
     @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio"),
     @NamedQuery(name = "Vehiculo.consultaPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio > :precio"),
+    @NamedQuery(name = "Vehiculo.consultaPrecioE", query = "SELECT v FROM Vehiculo v WHERE v.precio < :precio"),
     @NamedQuery(name = "Vehiculo.findByImagen", query = "SELECT v FROM Vehiculo v WHERE v.imagen = :imagen")})
 public class Vehiculo implements Serializable {
 
