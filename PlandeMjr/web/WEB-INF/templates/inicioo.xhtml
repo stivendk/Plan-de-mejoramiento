@@ -12,8 +12,9 @@
         <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
         <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
         <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
+        <f:event type="preRenderView" listener="#{seguridadController.verificarSesion()}"/>
         <title>Plan de mejoramiento</title>
-       
+
     </h:head>
 
     <h:body>
@@ -23,14 +24,13 @@
                 <h:form >
                     <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
                         <ul class="nav navbar-nav">
-                            <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
-                            <li class="le"><a class="le" href="gestion.xhtml">Gestionar Concesionario</a></li>
-                            <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
-                            <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
+                            <li class="le"><a class="le" jsf:outcome="/pages/inicio">Vehiculos</a></li>
+                            <li class="le"><a class="le" jsf:outcome="/pages/gestion">Gestionar Concesionario</a></li>
+                            <li class="le"><a class="le" jsf:outcome="/pages/venta">Registrar venta</a></li>
+                            <li class="le"><a class="le" jsf:outcome="/pages/registro">Registrar cliente</a></li>
+                            <li class="le"><a class="le" jsf:outcome="/pages/reportes">Reportes</a></li>                
                         </ul>
-                        <ui:repeat value="#{clienteManagedBean.listarCliente()}" var="tem"/>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="le"><a class="le" href="a.xhtml" action="#{clienteManagedBean.actualizarCliente(item)}">Configuracion</a></li>
                             <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                         </ul>
                     </div>
@@ -38,21 +38,22 @@
                 </h:form>
             </ui:insert>
         </div>
-
-        <div id="content" class="center_content">
-            <ui:insert name="content">
+        <div>
+            <ui:insert name="submenu">
                 <h:form>
                     <center><div class="btn-group">
                             <h2>Consultas</h2>
-                            <p:commandButton value="Auto Blitz"/>
-                            <p:commandButton value="Jorge Cortes y Cia"/>
-                            <p:commandButton value="Los Coches Volvo en Morato"/>
-                            <p:commandButton value="Casa Toro Usados"/>
-                            <p:commandButton value="Los Coches Ford"/>
-                            <p:commandButton value="Vehiculo mas economico"/>
-                            <p:commandButton value="Vehiculo mas reciente" actionListener="#{vehiculoManagedBean.consultarReciente()}" update="form2"/>
-                            <p:commandButton value="Vehiculo mas solicitado"/>
+                            <p:commandButton value="Vehiculo mas economico" class="btn btn-warning btn-sm" action="/pages/economico?faces-redirect=true"/>
+                            <p:commandButton value="Vehiculo mas vendido" class="btn btn-warning btn-sm" action="/pages/masvendido?faces-redirect=true"/>
+                            <p:commandButton value="Valorar suministro" class="btn btn-warning btn-sm" action="/pages/precioSuminis?faces-redirect=true"/>
+                            <p:commandButton value="Vehiculo reciente" class="btn btn-warning btn-sm" action="/pages/reciente?faces-redirect=true"/>
                         </div></center>
+                </h:form>
+            </ui:insert>
+        </div>    
+        <div id="content" class="center_content">
+            <ui:insert name="content">
+                <h:form>
                     <h:form id="form2">
                         <div class="container">
                             <div class="row">
@@ -70,7 +71,7 @@
                                                     #{item.idConcecionario.nombre}
                                                 </div>
                                                 <div>
-                                                    <p:commandButton value="Informacion" action="#{vehiculoManagedBean.verVehiculo(item)}" class="btn btn-warning btn-sm"/>
+                                                    <p:commandButton action="#{vehiculoManagedBean.verVehiculo(item)}" class="btn btn-warning btn-sm" value="Ver"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +83,6 @@
                 </h:form>
             </ui:insert>
         </div>
-        <script src="../resources/js/jquery-2.2.3.min.js"></script>
     </h:body>
 
 </html>

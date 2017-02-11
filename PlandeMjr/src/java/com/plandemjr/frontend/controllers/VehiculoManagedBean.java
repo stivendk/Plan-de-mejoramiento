@@ -99,7 +99,7 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
 
     public String verVehiculo(Vehiculo v) {
         vehi = v;
-        return "/pages/infoVehi";
+        return "/pages/vehiculo1?faces-redirect=true";
     }
 
     public List<Vehiculo> listarVehiculo() {

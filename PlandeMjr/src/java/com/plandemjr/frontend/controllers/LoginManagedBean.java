@@ -7,6 +7,7 @@ package com.plandemjr.frontend.controllers;
 
 import com.plandemjr.backend.persistence.entities.Concesionario;
 import com.plandemjr.backend.persistence.facade.ConcesionarioFacadeLocal;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -56,6 +57,12 @@ public class LoginManagedBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aviso Error!"));
         }
         return redir;
+    }
+    
+    public void verificarSesion() throws IOException{
+        if(FacesUtils.getUsuarioLogueado() == null){
+            FacesUtils.redireccionar();
+        }
     }
     
     public void cerrarSesion (){

@@ -6,42 +6,29 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <h:head>
-        <title>Registro</title>
-        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
-        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
-        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
-    </h:head>
-    <h:body>
-        <h:form>
-            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
-                <ul class="nav navbar-nav">
-                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
-                    <li class="le"><a class="le" href="a.xhtml">Gestionar Concesionario</a></li>
-                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
-                    <li class="le"><a class="le" href="registro.xhtml">Registrar cliente</a></li>
-                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
-                </ul>
-            </div>
-            <br></br>
-            <center><h:form>
-                <p:messages autoUpdate="true"/>
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Nombre:" for="nombre" />
-                    <p:inputText id="nombre" value="#{clienteManagedBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
-                    <p:outputLabel value="Correo:" for="correo" />
-                    <p:inputText id="correo" value="#{clienteManagedBean.cliente.correo}" title="Correo" required="true" requiredMessage="The Correo field is required."/>
-                    <p:outputLabel value="Telefono:" for="telefono" />
-                    <p:inputText id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
-                    <p:outputLabel value="Direccion:" for="direccion" />
-                    <p:inputText id="direccion" value="#{clienteManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
-                </p:panelGrid>
-                <p:commandButton value="Registrar" action="#{clienteManagedBean.registrarCliente()}"/>
-            </h:form></center>
-        </h:form>
-    </h:body>
-</html>
 
+    <body>
+
+        <ui:composition template="./../WEB-INF/templates/inicioo.xhtml">
+
+            <ui:define name="content">
+                <center><h:form>
+                        <p:messages autoUpdate="true"/>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{clienteManagedBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                            <p:outputLabel value="Correo:" for="correo" />
+                            <p:inputText id="correo" value="#{clienteManagedBean.cliente.correo}" title="Correo" required="true" requiredMessage="The Correo field is required."/>
+                            <p:outputLabel value="Telefono:" for="telefono" />
+                            <p:inputText id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
+                            <p:outputLabel value="Direccion:" for="direccion" />
+                            <p:inputText id="direccion" value="#{clienteManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
+                        </p:panelGrid>
+                        <p:commandButton value="Registrar" action="#{clienteManagedBean.registrarCliente()}"/>
+                    </h:form></center>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -6,32 +6,16 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <h:head>
-        <title>Reportes</title>
-        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
-        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
-        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
-    </h:head>
-    <h:body>
-        <h:form>
-            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
-                <ul class="nav navbar-nav">
-                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
-                    <li class="le"><a class="le" href="gestion.xhtml">Gestionar Concesionario</a></li>
-                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
-                    <li class="le"><a class="le" href="registro.xhtml">Registrar cliente</a></li>
-                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
-                </ul>
-            </div>
-            <br/>
-            <f:view>
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/templates/inicioo.xhtml">
+
+            <ui:define name="content">
+                <f:view>
                 <h:form>
                     <center><h1><h:outputText value="Reportes"/></h1></center>
-                    <h:commandLink>
-                        <p:graphicImage url="../resources/img/pdf.png.png"/>
+                    <h:commandLink value="pdf" class="btn btn-warning btn-s">
                         <p:dataExporter type="pdf" target="tbventa" fileName="Ventas"/>
                     </h:commandLink>
                     
@@ -59,8 +43,9 @@
                     </p:dataTable>
                 </h:form>
             </f:view>
+            </ui:define>
 
-        </h:form>
-    </h:body>
+        </ui:composition>
+
+    </body>
 </html>
-

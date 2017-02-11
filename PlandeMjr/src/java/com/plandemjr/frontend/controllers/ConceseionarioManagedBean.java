@@ -9,18 +9,18 @@ import com.plandemjr.backend.persistence.entities.Concesionario;
 import com.plandemjr.backend.persistence.facade.ConcesionarioFacadeLocal;
 import com.plandemjr.frontend.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author StivenDavid
  */
 @Named(value = "conceseionarioManagedBean")
-@SessionScoped
+@RequestScoped
 public class ConceseionarioManagedBean implements Serializable, Managedbean <Concesionario> {
 
     private Concesionario conc;

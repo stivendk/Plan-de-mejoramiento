@@ -10,6 +10,7 @@ import com.plandemjr.backend.persistence.facade.VentaFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -61,6 +62,7 @@ public class VentaManagedBean implements Serializable {
     }
 
     public void registrarVenta() {
+        venta.setFecha(new Date());
         ventafc.create(venta);
     }
 
@@ -68,8 +70,52 @@ public class VentaManagedBean implements Serializable {
         return ventafc.findAll();
     }
 
-    public void masVendido() {
-        resultado = ventafc.masVendido(vehiculo);
+    public String masVendio() {
+        String a = null;
+        String b = null;
+        for (Venta v : listarVenta()) {
+            a = a + " " + v.getIdVehiculo().getMarca();
+        }
+        b = obtenerMarca(a);
+        return b;
+    }
+    
+    public String obtenerMarca(String _frase)
+    {
+        String palabras [] = _frase.split(" ");
+        String palabrasB [] = _frase.split(" ");
+        
+        int cantidad = palabras.length;
+        String resultado = "";
+        int contadorMasRepet =  0;
+ 
+        for (int i = 0; i < cantidad; i++) {
+                int contador = 0;
+//          resultado += palabras[i];
+                String palabra = palabras[i];
+ 
+                for (int j = 0; j < cantidad; j++) {
+ 
+                        if (palabra.equalsIgnoreCase(palabrasB[j])){
+                                contador++;
+                                palabras[j] = "";
+ 
+                        }
+                }
+ 
+                if ((contador > 1)&& (contador > contadorMasRepet)){
+                        resultado = palabra;
+                        contadorMasRepet = contador;
+                        System.out.print(palabras[i]);
+                }
+                else if ((contador > 1)&& (contador == contadorMasRepet)){
+                    resultado += " " + palabra;
+                }       
+        }
+        if (resultado == "")
+            resultado = "Solo hay un venta ";
+        
+        return resultado;
     }
 
 }

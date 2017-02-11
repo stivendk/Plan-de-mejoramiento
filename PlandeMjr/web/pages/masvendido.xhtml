@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -7,12 +7,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-    <h:head>
-        <f:event type="preRenderView" listener="#{seguridadController.verificarSesion()}"/>
-    </h:head>
+        
+    
+    <body>
 
-    <h:body>
-        a
-    </h:body>
+        <ui:composition template="/WEB-INF/templates/inicioo.xhtml">
 
+            <ui:define name="content">
+                <center><h1>Marca mas vendida</h1>
+                    <h2><h:outputLabel value="#{ventaManagedBean.masVendio()}"/></h2></center>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
 </html>

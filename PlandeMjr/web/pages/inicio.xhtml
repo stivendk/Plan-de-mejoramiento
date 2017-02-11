@@ -9,62 +9,9 @@
 
     <body>
 
-        <ui:composition template="./inicioo.xhtml">
+        <ui:composition template="/WEB-INF/templates/inicioo.xhtml">
 
-            <ui:define name="top">
-                <h:form >
-                    <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
-                        <ul class="nav navbar-nav">
-                            <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
-                            <li class="le"><a class="le" href="gestion.xhtml">Gestionar Concesionario</a></li>
-                            <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
-                            <li class="le"><a class="le" href="registro.xhtml">Registrar cliente</a></li>
-                            <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>                
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
-                        </ul>
-                    </div>
-                    <br></br>
-                </h:form>
-            </ui:define>
-
-            <ui:define name="content">
-                <h:form>
-                    <center><div class="btn-group">
-                            <h2>Consultas</h2>
-                            <p:commandButton value="Vehiculo mas economico" action="/pages/consultas/economico?faces-redirect=true"/>
-                            <p:commandButton value="Vehiculo mas vendido" action="/pages/consultas/masvendido?faces-redirect=true"/>
-                            <p:commandButton value="Valorar suministro" action="/pages/consultas/precioSuminis?faces-redirect=true"/>
-                            <p:commandButton value="Vehiculo reciente" action="/pages/consultas/reciente?faces-redirect=true"/>
-                        </div></center>
-                    <h:form id="form2">
-                        <div class="container">
-                            <div class="row">
-                                <br/>
-                                <ui:repeat value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
-                                    <div class="col-sm-4 col-md-4">
-                                        <div class="post">
-                                            <div class="post-img-content">
-                                                <img src="../resources/img/#{item.imagen}.jpg" class="img-responsive" width="460px" height="250px" />
-                                                <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
-                                                    <b>#{item.marca}</b></span>
-                                            </div>
-                                            <div class="content">
-                                                <div>
-                                                    #{item.idConcecionario.nombre}
-                                                </div>
-                                                <div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ui:repeat>
-                            </div>
-                        </div>
-                    </h:form>
-                </h:form>
-            </ui:define>
+            
 
         </ui:composition>
 

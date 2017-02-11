@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    
+    <body>
+
+        <ui:composition template="/WEB-INF/templates/inicioo.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <p:messages autoUpdate="true"/>
+                        <br/>
+                        <center><p:column>
+                            <h:commandButton value="Valorar" class="btn btn-warning btn-sm" actionListener="#{vehiculoManagedBean.consultarReciente()}"/>
+                        </p:column></center>
+                        <h:form id="form2">
+                            <div class="container">
+                                <div class="row">
+                                    <br/>
+                                    <ui:repeat value="#{vehiculoManagedBean.resultado}" var="item">
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="post">
+                                                <div class="post-img-content">
+                                                    <img src="../../resources/img/#{item.imagen}.jpg" class="img-responsive" width="460px" height="250px" />
+                                                    <span class="post-title"><b>#{item.modelo} #{item.lanzamiento}</b><br />
+                                                        <b>#{item.marca}</b></span>
+                                                </div>
+                                                <div class="content">
+                                                    <div>
+                                                        #{item.idConcecionario.nombre}
+                                                    </div>
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
