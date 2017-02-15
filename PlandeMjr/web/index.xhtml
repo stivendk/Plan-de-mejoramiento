@@ -14,12 +14,12 @@
             <p:messages autoUpdate="true"/>
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="concesionario" value="Concesionario:" />
-                <p:inputText id="concesionario"  value="#{loginManagedBean.conce.nombre}" required="true" label="username" />
+                <p:inputText id="concesionario"  value="#{conceseionarioManagedBean.conc.nombre}" required="true" label="username" />
 
                 <h:outputLabel for="password" value="Password:" />
-                <p:password id="password" value="#{loginManagedBean.conce.password}" required="true" label="password" />
+                <p:password id="password" value="#{conceseionarioManagedBean.conc.password}" required="true" label="password" />
 
-                <p:commandButton value="Login" action="#{loginManagedBean.iniciarSesion(conce)}"/>
+                <p:commandButton value="Login" action="#{conceseionarioManagedBean.iniciarSesion()}"/>
             </h:panelGrid>
             <p:separator/>
         </h:form>

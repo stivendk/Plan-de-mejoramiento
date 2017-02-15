@@ -27,7 +27,7 @@ public class LoginManagedBean implements Serializable {
     private Concesionario conce;
     @EJB
     private ConcesionarioFacadeLocal concefc;
-    
+
     public LoginManagedBean() {
     }
 
@@ -38,36 +38,18 @@ public class LoginManagedBean implements Serializable {
     public void setConce(Concesionario conce) {
         this.conce = conce;
     }
-    
+
     @PostConstruct
-    public void init(){
-        conce = new Concesionario();
+    public void init() {
+        conce = (Concesionario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
     }
-    
-    public String iniciarSesion(Concesionario cl){
-        String redir = null;
-        try {
-            if (concefc.iniciarSesion(conce)!=null) {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("concesionario", conce);
-            redir = "/pages/inicio?faces-redirect=true";
-            }else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
-            }
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aviso Error!"));
-        }
-        return redir;
-    }
-    
-    public void verificarSesion() throws IOException{
-        if(FacesUtils.getUsuarioLogueado() == null){
-            FacesUtils.redireccionar();
-        }
-    }
-    
-    public void cerrarSesion (){
-        
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+
+    public String cerrarSesion() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().remove("usuario");
+        context.getExternalContext().invalidateSession();
+        conce = null;
+        return "/index.xhtml?faces-redirect=true";
     }
 
 }

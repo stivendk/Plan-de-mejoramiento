@@ -10,6 +10,7 @@ import com.plandemjr.backend.persistence.facade.VentaFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -28,6 +29,11 @@ public class VentaManagedBean implements Serializable {
     private VentaFacadeLocal ventafc;
     private int vehiculo;
     private List<Venta> resultado;
+    private LoginManagedBean conce;
+
+    public LoginManagedBean getConce() {
+        return conce;
+    }
 
     public VentaManagedBean() {
     }
@@ -117,5 +123,13 @@ public class VentaManagedBean implements Serializable {
         
         return resultado;
     }
-
+    public  List<Venta> ventaConces(){
+        List<Venta> l = new ArrayList<>();
+     for( Venta venta: listarVenta()){
+         if(venta.getIdVehiculo().getIdConcecionario().equals(conce.getConce())){
+             l.add(venta);
+         }
+     }
+     return  l;
+    }
 }
