@@ -19,10 +19,6 @@
                                 <h1><h:outputText value="Comprar Vehiculo"/></h1>
 
                                 <p:panelGrid columns="2">
-                                    <p:outputLabel value="Fecha:" for="fecha" />
-                                    <p:inputText id="fecha" value="#{ventaManagedBean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                                    </p:inputText>
                                     <p:outputLabel value="Vehiculo:" for="idVehiculo" />
                                     <p:selectOneMenu id="idVehiculo" value="#{ventaManagedBean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
                                         <!-- TODO: update below reference to list of available items-->

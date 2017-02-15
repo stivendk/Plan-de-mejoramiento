@@ -15,13 +15,14 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author StivenDavid
  */
 @Named(value = "ventaManagedBean")
-@SessionScoped
+@RequestScoped
 public class VentaManagedBean implements Serializable {
 
     private Venta venta;

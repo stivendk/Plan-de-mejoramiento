@@ -30,7 +30,7 @@
                             <li class="le"><a class="le" jsf:outcome="/pages/reportes">Reportes</a></li>                
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="le"><a class="le" jsf:action="/index?faces-redirect=true" actionListener="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                            <li class="le"><h:commandLink class="le" action="#{loginManagedBean.cerrarSesion()}" value="Cerra Sessión"/></li>
                         </ul>
                     </div>
                     <br></br>

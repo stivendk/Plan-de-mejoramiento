@@ -14,8 +14,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -55,17 +53,13 @@ public class ConceseionarioManagedBean implements Serializable, Managedbean <Con
     }
     
     public String iniciarSesion(){
-        try {
-            Concesionario c= concfc.iniciarSesion(conc);
-            FacesContext context = FacesContext.getCurrentInstance();
-            if(c!=null){
-                context.getExternalContext().getSessionMap().put("usuario", c);
+        try{
+            if(concfc.iniciarSesion(conc)!=null){
+                conc = concfc.iniciarSesion(conc);
+                FacesUtils.setUsuarioLogueado(conc);
                 return "/pages/inicio.xhtml?faces-redirect=true";
             }
-        }catch (Exception e){
-        }
-        conc = null;
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!" ));
+        }catch(Exception e){}
         return null;
     }
 }

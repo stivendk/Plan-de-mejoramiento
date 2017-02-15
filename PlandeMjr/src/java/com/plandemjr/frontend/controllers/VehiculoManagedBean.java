@@ -9,18 +9,19 @@ import com.plandemjr.backend.persistence.entities.Vehiculo;
 import com.plandemjr.backend.persistence.facade.VehiculoFacadeLocal;
 import com.plandemjr.frontend.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 /**
  *
  * @author StivenDavid
  */
 @Named(value = "vehiculoManagedBean")
-@SessionScoped
+@RequestScoped
 public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> {
 
     private Vehiculo vehi;
@@ -31,7 +32,8 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
     private int preciob = 9;
     private List<Vehiculo> resultado;
     private int lanzamiento = 2017;
-
+    
+    
     public VehiculoManagedBean() {
     }
 
@@ -79,9 +81,17 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
     public void init() {
         vehi = new Vehiculo();
     }
+    @Inject private LoginManagedBean conce;
 
-    public void registrarVehiculo() {
+    public LoginManagedBean getConce() {
+        return conce;
+    }
+    
+    
+    public String registrarVehiculo() {
+        vehi.setIdConcecionario(getConce().getConce());
         vehifc.create(vehi);
+        return "/pages/inicio.xhtml?faces-redirect=true";
     }
 
     public void eliminarVehiculo(Vehiculo v) {

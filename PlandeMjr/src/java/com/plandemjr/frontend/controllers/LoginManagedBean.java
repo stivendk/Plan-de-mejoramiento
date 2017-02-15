@@ -6,14 +6,10 @@
 package com.plandemjr.frontend.controllers;
 
 import com.plandemjr.backend.persistence.entities.Concesionario;
-import com.plandemjr.backend.persistence.facade.ConcesionarioFacadeLocal;
-import java.io.IOException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -25,9 +21,6 @@ import javax.faces.context.FacesContext;
 public class LoginManagedBean implements Serializable {
 
     private Concesionario conce;
-    @EJB
-    private ConcesionarioFacadeLocal concefc;
-
     public LoginManagedBean() {
     }
 
@@ -41,13 +34,12 @@ public class LoginManagedBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        conce = (Concesionario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        conce = (Concesionario) FacesUtils.getUsuarioLogueado();
+        System.out.println(conce);
     }
 
     public String cerrarSesion() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getExternalContext().getSessionMap().remove("usuario");
-        context.getExternalContext().invalidateSession();
+        FacesUtils.removerUsuario();
         conce = null;
         return "/index.xhtml?faces-redirect=true";
     }

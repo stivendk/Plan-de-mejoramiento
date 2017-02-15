@@ -9,18 +9,18 @@ import com.plandemjr.backend.persistence.entities.Cliente;
 import com.plandemjr.backend.persistence.facade.ClienteFacadeLocal;
 import com.plandemjr.frontend.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author StivenDavid
  */
 @Named(value = "clienteManagedBean")
-@SessionScoped
+@RequestScoped
 public class ClienteManagedBean implements Serializable, Managedbean <Cliente> {
 
     private Cliente cliente;

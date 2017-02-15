@@ -34,11 +34,10 @@ public class SessionFilter implements Filter {
 
         String s = req.getRequestURL().toString();
 
-        if (s.contains("xhtml")) {
+        if (!s.contains("xhtml")) {
             res.sendRedirect(req.getContextPath() + "/pages/inicio.xhtml");
         } else {
-            if (req.getSession().getAttribute("usuario") != null) {
-            } else {
+            if(req.getSession().getAttribute("usuario")==null){
                 res.sendRedirect(req.getContextPath() + "/index.xhtml");
             }
             chain.doFilter(request, response);
